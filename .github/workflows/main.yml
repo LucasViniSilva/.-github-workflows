@@ -1,18 +1,22 @@
-name: Continiuous Integration;
-on: pull_request;
-# JOBS => PASSO A PASSO 
-jobs: 
-  continuous-integration:
+name: Executar testes
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  testes:
     runs-on: ubuntu-latest
 
     steps:
-        - uses: actions/checkout@v3
-        - name: Using Node.js
-          uses: actions/setup-node@v2
-          with:
-            node-version: '14'
-            - name: run Install, Build and Test
-              run: |
-                npm install
-                npm run build
-                npm test
+      - uses: actions/checkout@v2
+      - name: Configurar o ambiente
+        run: |
+          # Projeto Node.js
+          npm install
+      - name: Executar testes
+        run: |
+          # Projeto Node.js com Jest
+          npm test
